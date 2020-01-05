@@ -1,0 +1,27 @@
+syntax = "proto3";
+package v1;
+
+enum status {
+    VALID = 0;
+    INVALID = 1;
+}
+
+message MessageRequest {
+    string token = 1;
+    string api = 2;
+    string email = 3;
+}
+
+message MessageResponse {
+    status stats = 1;
+    string message = 2;
+    string email = 3;
+    string userId = 4;
+    string api = 5;
+    bool verifiedEmail = 6;
+    string token = 7;
+}
+
+service Auth {
+    rpc Validate(MessageRequest) returns(MessageResponse) {}
+}
